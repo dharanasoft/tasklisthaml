@@ -1,0 +1,11 @@
+%h1 Listing Pending Tasks
+%ul.tasks
+  - @pending.each do |task|
+    %li.task
+      =task.title
+      =link_to 'edit', edit_task_path(task)
+      =link_to 'delete', task_path(task), :method=>'delete',:confirm=>'Are you sure you want to delete?'
+      =link_to 'complete', complete_task_path(task), :method=>'post', :confirm=>'This will complete the task. Continue?'
+
+= link_to 'New Task',new_bucket_task_path(@bucket)
+= link_to 'Completed Tasks', completed_bucket_tasks_path(@bucket)

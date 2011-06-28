@@ -1,0 +1,22 @@
+!!! 5
+%html
+  %head
+    %title Task List Haml
+    = stylesheet_link_tag :all
+    = javascript_include_tag "jquery.min.js"
+    = javascript_include_tag "jquery_ujs.js"
+    = javascript_include_tag "application.js"
+    = csrf_meta_tag
+  %body
+    - if current_user
+      %p 
+        You are signed in as #{current_user.email}
+        =link_to 'Sign Out', destroy_user_session_path
+    - else
+      %p
+        =link_to 'Sign in', new_user_session_path
+        or
+        =link_to 'Sign up', new_user_registration_path
+    %p#notice.flash= notice
+    %p#alert.flash= alert
+    =yield
