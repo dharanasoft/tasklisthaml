@@ -2,21 +2,38 @@
 %html
   %head
     %title Task List Haml
-    = stylesheet_link_tag :all
+    =stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Artifika&v1'
+    = stylesheet_link_tag 'screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'print.css', :media => 'print'
+    /[if IE]
+      = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
+    
     = javascript_include_tag "jquery.min.js"
     = javascript_include_tag "jquery_ujs.js"
     = javascript_include_tag "application.js"
     = csrf_meta_tag
   %body
-    - if current_user
-      %p 
-        You are signed in as #{current_user.email}
-        =link_to 'Sign Out', destroy_user_session_path
-    - else
-      %p
-        =link_to 'Sign in', new_user_session_path
-        or
-        =link_to 'Sign up', new_user_registration_path
-    %p#notice.flash= notice
-    %p#alert.flash= alert
-    =yield
+    #container
+      #header
+        #logo
+          %h1 Taskr
+        #login
+          - if current_user
+            %p 
+              You are signed in as #{current_user.email}
+              =link_to 'Sign Out', destroy_user_session_path
+          - else
+            %p
+              =link_to 'Sign in', new_user_session_path
+              or
+              =link_to 'Sign up', new_user_registration_path
+      #alerts
+        %p#notice.flash= notice
+        %p#alert.flash= alert
+      %ul#nav
+        %li.selected= link_to 'Buckets', buckets_path
+        %li= link_to 'Tasks', "#"
+      #content
+        =yield
+      #footer
+        Awesome RailsPundit Creation

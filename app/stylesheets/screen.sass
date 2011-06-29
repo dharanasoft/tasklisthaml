@@ -1,0 +1,41 @@
+@import compass/reset
+@import blueprint
+@import blueprint/grid
+
+body 
+  background-color: #eee
+  font-family: "Georgia", sans-serif
+  #container
+    @include container
+    #header
+      @include column(24)
+      #logo
+        @include column(8)
+        h1
+          font-family: 'Artifika'
+          font-size: 50px
+      #login
+        @include(16,true)
+        text-align: right
+    #alerts
+      @include column(24)
+      p.alert
+        background-color: #c00
+        color: #fff
+      p.notice
+        background-color: #0c0
+        color: #fff
+    ul#nav
+      @include column(24)
+      border-bottom: 2px solid #333
+      li
+        display: inline-block
+    #content
+      @include column(24)
+      min-height: 500px
+      overflow: visible
+    #footer
+      text-align: center
+      @include column(24)
+      color: #777
+      font-size: smaller
